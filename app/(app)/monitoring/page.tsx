@@ -454,7 +454,7 @@ export default function MonitoringPage() {
 
     if (purifierOptions.length === 0) {
         return (
-            <main className="min-h-screen bg-background px-4 py-6 md:px-6 lg:px-8">
+            <main className="flex flex-col justify-center items-center min-h-screen bg-background px-4 py-6 md:px-6 lg:px-8">
                 <div className="mx-auto max-w-7xl">
                     No purifier registered yet.
                 </div>
