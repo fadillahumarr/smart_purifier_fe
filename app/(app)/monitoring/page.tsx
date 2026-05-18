@@ -263,31 +263,61 @@ export default function MonitoringPage() {
 
                 const trendItem = {
                     time: data.recorded_at,
-                    tds: data.tds?.value ?? null,
-                    turbidity: data.turbidity?.value ?? null,
-                    ph: data.ph?.value ?? null,
-                    temperature: data.temperature?.value ?? null,
-                    water_volume: data.water_volume?.value ?? null,
+                    tds: data.tds ?? null,
+                    turbidity: data.turbidity ?? null,
+                    ph: data.ph ?? null,
+                    temperature: data.temperature ?? null,
+                    water_volume: data.water_volume ?? null,
                 };
 
                 return {
                     ...prev,
                     settling_realtime: {
-                        tds: data.tds ?? prev.settling_realtime.tds,
-                        turbidity:
-                            data.turbidity ?? prev.settling_realtime.turbidity,
-                        ph: data.ph ?? prev.settling_realtime.ph,
-                        temperature:
-                            data.temperature ??
-                            prev.settling_realtime.temperature,
-                        water_volume:
-                            data.water_volume ??
-                            prev.settling_realtime.water_volume,
+                        tds: {
+                            value:
+                                data.tds ??
+                                prev.settling_realtime.tds.value,
+                            unit: "ppm",
+                            recorded_at: data.recorded_at,
+                        },
+
+                        turbidity: {
+                            value:
+                                data.turbidity ??
+                                prev.settling_realtime.turbidity.value,
+                            unit: "NTU",
+                            recorded_at: data.recorded_at,
+                        },
+
+                        ph: {
+                            value:
+                                data.ph ??
+                                prev.settling_realtime.ph.value,
+                            unit: "",
+                            recorded_at: data.recorded_at,
+                        },
+
+                        temperature: {
+                            value:
+                                data.temperature ??
+                                prev.settling_realtime.temperature.value,
+                            unit: "°C",
+                            recorded_at: data.recorded_at,
+                        },
+
+                        water_volume: {
+                            value:
+                                data.water_volume ??
+                                prev.settling_realtime.water_volume.value,
+                            unit: "L",
+                            recorded_at: data.recorded_at,
+                        },
                     },
+
                     settling_trend: [
                         ...prev.settling_trend,
                         trendItem,
-                    ].slice(-300),
+                    ].slice(-100),
                 };
             });
         };
