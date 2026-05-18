@@ -81,7 +81,7 @@ const AddPurifierForm = ({
 
         if (!macAddress.trim()) {
             newErrors.macAddress = "MAC Address is required";
-        } else if (/^([0-9A-Fa-f]{2}[:-]?){5}[0-9A-Fa-f]{2}$/.test(macAddress)) {
+        } else if (!/^([0-9A-Fa-f]{2}[:-]?){5}[0-9A-Fa-f]{2}$/.test(macAddress)) {
             newErrors.macAddress = "Invalid MAC Address format";
         }
 
