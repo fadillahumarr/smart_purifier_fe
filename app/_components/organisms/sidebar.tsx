@@ -87,7 +87,7 @@ const Sidebar = () => {
 
     loadAlertCount();
 
-    const interval = setInterval(loadAlertCount, 5000);
+    const interval = setInterval(loadAlertCount, 60000);
 
     return () => clearInterval(interval);
   }, []);
@@ -102,6 +102,12 @@ const Sidebar = () => {
       .map((part) => part[0]?.toUpperCase() ?? "")
       .join("");
   }, [user]);
+
+  const closeSidebarOnMobile = () => {
+    if (window.innerWidth < 768) {
+      setSidebarOpen(false);
+    }
+  };
 
   const handleLogout = async () => {
     const result = await Swal.fire({
@@ -151,7 +157,7 @@ const Sidebar = () => {
       <div className="fixed top-0 left-0 z-40 flex h-16 w-full items-center border-b border-border bg-background px-4 md:hidden">
         <button
           onClick={() => setSidebarOpen(true)}
-          className="rounded-lg p-1 hover:bg-foreground/10"
+          className="rounded-lg p-1 hover:bg-foreground/10 cursor-pointer"
           aria-label="Open sidebar"
         >
           <Icon icon="jam:menu" className="text-[28px]" />
@@ -234,7 +240,8 @@ const Sidebar = () => {
                 <li key={item.label} className="group relative">
                   <Link
                     href={item.href}
-                    className={`flex items-center rounded-xl px-3 py-3 transition ${active
+                    onClick={closeSidebarOnMobile}
+                    className={`flex items-center rounded-xl px-3 py-3 cursor-pointer transition ${active
                       ? "bg-secondary/10 text-secondary"
                       : "text-foreground hover:bg-tertiary/40"
                       } ${isOpen ? "gap-3" : "justify-center"}`}
