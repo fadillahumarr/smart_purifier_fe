@@ -1,0 +1,11 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: smart_water_purifier_frontend
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env.production
+    restart: unless-stopped
