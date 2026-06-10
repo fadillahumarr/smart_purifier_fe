@@ -115,7 +115,7 @@ const ListPurifiers = ({ isAddOpen, onCloseAdd }: ListPurifiersProps) => {
         <>
             <div className="border-t border-border pt-4">
                 {loading ? (
-                    <p className="text-sm text-muted">Loading purifiers...</p>
+                    <p className="flex justify-center items-center text-base text-muted">Loading purifiers...</p>
                 ) : purifiers.length === 0 ? (
                     <div className="rounded-2xl border border-border bg-surface px-6 py-14 text-center dark:bg-background">
                         <h3 className="text-lg font-semibold text-foreground">

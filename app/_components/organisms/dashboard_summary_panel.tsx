@@ -22,7 +22,7 @@ const DashboardSummaryPanel = ({
     };
 
     return (
-        <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        <section className="grid grid-cols-2 gap-3 md:gap-4 xl:grid-cols-4">
             <SummaryCard
                 title="Total Purifiers"
                 value={display(totalPurifiers)}
