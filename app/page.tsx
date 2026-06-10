@@ -1,10 +1,22 @@
+"use client";
+
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 const Dashboard = () => {
-  return (
-    <main className="bg-background w-screen h-screen">
-      SMART WATER PURIFIER
-    </main>
-  );
-}
+  const router = useRouter();
+
+  useEffect(() => {
+    const token = localStorage.getItem("access_token");
+
+    if (token) {
+      router.replace("/dashboard");
+    } else {
+      router.replace("/login");
+    }
+  }, [router]);
+
+  return null;
+};
 
 export default Dashboard;
